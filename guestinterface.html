@@ -1,134 +1,82 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>GreenLife Wellness Center - Client</title>
+
   <link rel="stylesheet" href="stylesheet.css">
+  
 </head>
 <body>
-    <h1 style="background-color: rgb(7, 93, 45); color: rgb(252, 252, 252);"> Greenlife wellness center </h1>
+        <h1 style="background-color: rgb(7, 93, 45); color: rgb(252, 252, 252);"> Greenlife wellness center </h1>
     <p><h2 style="text-align: center;"> The body calms the mind with organic food, yoga, ayruwedha, traditional music and nature</h2></p><br>
-    <h1>GreenLife Wellness Center - Client Portal</h1>
+  <h1>GreenLife Wellness Center - Client Portal</h1>
 
-    <!-- Client Profile -->
-    <h2>My Profile</h2>
-    <form id="profileForm">
-      <label>Full Name:</label>
-      <input type="text" id="clientName" required><br><br>
-      
-      <label>Email:</label>
-      <input type="email" id="clientEmail" required><br><br>
 
-      <label>Phone:</label>
-      <input type="tel" id="clientPhone" required><br><br>
+  <!-- Services Section -->
+  <h2>Our Services</h2>
+  <div>Ayurvedic Therapy</div>
+  <div>Yoga & Meditation Classes</div>
+  <div>Nutrition & Diet Consultation</div>
+  <div>Physiotherapy</div>
+  <div>Massage Therapy</div>
 
-      <label>Age:</label>
-      <input type="number" id="clientAge" min="1"><br><br>
+  <!-- Appointment Booking -->
+  <h2>Book an Appointment</h2>
+  <form id="bookingForm">
+    <label>Choose Service:</label>
+    <select id="service">
+      <option>Ayurvedic Therapy</option>
+      <option>Yoga & Meditation Classes</option>
+      <option>Nutrition & Diet Consultation</option>
+      <option>Physiotherapy</option>
+      <option>Massage Therapy</option>
+    </select>
+    <br><br>
 
-      <button type="submit">Save Profile</button>
-    </form>
+    <label>Choose Therapist:</label>
+    <select id="therapist">
+      <option>Dr. Silva</option>
+      <option>Dr. Fernando</option>
+      <option>Dr. Perera</option>
+      <option>Dr. Kumar</option>
+    </select>
+    <br><br>
 
-    <h3>Saved Details:</h3>
-    <div id="profileDetails">No profile details saved yet</div>
+    <label>Choose Date & Time:</label>
+    <input type="datetime-local" id="datetime">
+    <br><br>
 
-    <!-- Services Section -->
-    <h2>Our Services</h2>
-    <div>Ayurvedic Therapy</div>
-    <div>Yoga & Meditation Classes</div>
-    <div>Nutrition & Diet Consultation</div>
-    <div>Physiotherapy</div>
-    <div>Massage Therapy</div>
+    <button type="submit">Book Now</button>
+  </form>
+  
 
-    <!-- Appointment Booking -->
-    <h2>Book an Appointment</h2>
-    <form id="bookingForm">
-      <label>Choose Service:</label>
-      <select id="service">
-        <option>Ayurvedic Therapy</option>
-        <option>Yoga & Meditation Classes</option>
-        <option>Nutrition & Diet Consultation</option>
-        <option>Physiotherapy</option>
-        <option>Massage Therapy</option>
-      </select>
-      <br><br>
+  <!-- My Appointments -->
+  <h2>My Appointments</h2>
+  <ul id="appointments"></ul>
 
-      <label>Choose Therapist:</label>
-      <select id="therapist">
-        <option>Dr. Silva</option>
-        <option>Dr. Fernando</option>
-        <option>Dr. Perera</option>
-        <option>Dr. Kumar</option>
-      </select>
-      <br><br>
+  <!-- Personal Wellness Records -->
+  <h2>My Wellness Records (Read-Only)</h2>
+  <div>
+    <strong>Past Appointments:</strong>
+    <ul id="pastAppointments"><li>No records yet</li></ul>
+  </div>
+  <div>
+    <strong>Therapist Notes / Recommendations:</strong>
+    <ul id="therapistNotes"><li>No records yet</li></ul>
+  </div>
+  <div>
+    <strong>Nutrition Plans / Yoga / Physiotherapy Exercises:</strong>
+    <ul id="plans"><li>No records yet</li></ul>
+  </div>
 
-      <label>Choose Date & Time:</label>
-      <input type="datetime-local" id="datetime">
-      <br><br>
+  
+  
+  <h2>Inquiry or Need Help?</h2>
+  <a href="mailto:greenlifewellness@gmail.com">Email us</a> <br>
 
-      <label>Special Notes (optional):</label>
-      <textarea id="notes"></textarea>
-      <br><br>
 
-      <button type="submit">Book Now</button>
-    </form>
 
-    <!-- My Appointments -->
-    <h2>My Appointments</h2>
-    <ul id="appointments"></ul>
 
-    <!-- Personal Wellness Records -->
-    <h2>My Wellness Records (Read-Only)</h2>
-    <div>
-      <strong>Past Appointments:</strong>
-      <ul id="pastAppointments"><li>No records yet</li></ul>
-    </div>
-    <div>
-      <strong>Therapist Notes / Recommendations:</strong>
-      <ul id="therapistNotes"><li>No records yet</li></ul>
-    </div>
-    <div>
-      <strong>Nutrition Plans / Yoga / Physiotherapy Exercises:</strong>
-      <ul id="plans"><li>No records yet</li></ul>
-    </div>
-
-    <!-- Inquiry -->
-    <h2>Inquiry or Need Help?</h2>
-    <a href="mailto:greenlifewellness@gmail.com">Email us</a> <br>
-
-    <!-- Script for interactivity -->
-    <script>
-      // Save Profile
-      document.getElementById("profileForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-        let name = document.getElementById("clientName").value;
-        let email = document.getElementById("clientEmail").value;
-        let phone = document.getElementById("clientPhone").value;
-        let age = document.getElementById("clientAge").value;
-
-        document.getElementById("profileDetails").innerHTML =
-          "<p><strong>Name:</strong> " + name + "</p>" +
-          "<p><strong>Email:</strong> " + email + "</p>" +
-          "<p><strong>Phone:</strong> " + phone + "</p>" +
-          "<p><strong>Age:</strong> " + age + "</p>";
-      });
-
-      // Booking
-      document.getElementById("bookingForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-        let service = document.getElementById("service").value;
-        let therapist = document.getElementById("therapist").value;
-        let datetime = document.getElementById("datetime").value;
-        let notes = document.getElementById("notes").value;
-
-        let profileName = document.getElementById("clientName").value || "Guest";
-
-        let li = document.createElement("li");
-        li.innerHTML = "<strong>" + profileName + "</strong> booked <em>" + service +
-          "</em> with " + therapist + " on " + datetime +
-          (notes ? " | Notes: " + notes : "");
-
-        document.getElementById("appointments").appendChild(li);
-      });
-    </script>
 </body>
 </html>
-
