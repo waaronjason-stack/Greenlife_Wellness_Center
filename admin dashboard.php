@@ -1,0 +1,92 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+
+$name = $_SESSION['user_name'];
+$role = $_SESSION['user_role'];
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Administrative Staff Portal - GreenLife Wellness</title>
+
+  <link rel="stylesheet" href="stylesheet.css">
+  
+</head>
+<body>
+
+        <h1 style="background-color: rgb(7, 93, 45); color: rgb(252, 252, 252);"> Greenlife wellness center </h1>
+    <p><h2 style="text-align: center;"> The body calms the mind with organic food, yoga, ayruwedha, traditional music and nature</h2></p>
+  <h1>Administrative Staff Portal</h1>
+
+  <!-- Manage Overall Appointment Calendar -->
+  <h2>Appointment Calendar</h2>
+  <ul id="appointmentList">
+    <li>No appointments yet</li>
+  </ul>
+
+  <!-- Assign Therapists to Clients -->
+  <h2>Assign Therapist to Client</h2>
+  <form id="assignForm">
+    <label>Client Name:</label><br>
+    <input type="text" id="clientName" required><br><br>
+
+    <label>Therapist Name:</label><br>
+    <input type="text" id="therapistName" required><br><br>
+
+    <label>Service:</label><br>
+    <input type="text" id="serviceName" required><br><br>
+
+    <button type="submit">Assign</button>
+  </form>
+  <ul id="assignedList"></ul>
+
+  <!-- Manage Services -->
+  <h2>Manage Services</h2>
+  <form id="serviceForm">
+    <label>New Service:</label><br>
+    <input type="text" id="newService" required>
+    <button type="submit">Add Service</button>
+  </form>
+  <ul id="serviceList">
+    <li>Ayurvedic Therapy</li>
+    <li>Yoga & Meditation</li>
+    <li>Nutrition & Diet</li>
+    <li>Physiotherapy</li>
+    <li>Massage Therapy</li>
+  </ul>
+
+  <!-- Add New Therapist -->
+  <h2>Add New Therapist</h2>
+  <form id="therapistForm">
+    <label>Therapist Username:</label><br>
+    <input type="text" id="therapistUser" required><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" id="therapistPass" required><br><br>
+
+    <button type="submit">Add Therapist</button>
+  </form>
+  <ul id="therapistList"></ul>
+
+  <!-- Add New Administrative Person -->
+  <h2>Add New Administrative Person</h2>
+  <form id="adminForm">
+    <label>Admin Username:</label><br>
+    <input type="text" id="adminUser" required><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" id="adminPass" required><br><br>
+
+    <button type="submit">Add Admin</button>
+  </form>
+  <ul id="adminList"></ul>
+
+  
+</body>
+</html>

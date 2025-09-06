@@ -1,3 +1,29 @@
+<?php
+session_start();
+
+// Redirect if not logged in or not a therapist
+if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'therapist') {
+    header("Location: login.php");
+    exit;
+}
+
+$name = $_SESSION['user_name'];
+
+include("db.php");
+
+// SQL query to fetch therapist's appointments
+$sql = "SELECT a.id, u.name AS client_name, a.service, a.date
+        FROM appointments a
+        JOIN users u ON a.client_id = u.id
+        WHERE a.therapist = ?
+        ORDER BY a.date ASC";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $name);
+$stmt->execute();
+$result = $stmt->get_result();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,9 +82,7 @@
     <button type="submit">Save Notes</button>
   </form>
   <ul id="notesList"></ul>
-
-
-
+  
 </body>
 </html>
 
